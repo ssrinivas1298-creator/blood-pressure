@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent Blood Analysis System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="container">
+        <header class="header">
+            <h1>Intelligent Blood Analysis System</h1>
+            <p>Predicting health metrics using advanced machine learning</p>
+        </header>
+
+        <div class="glass-card main-grid">
+            <section class="input-section">
+                <h2>Patient Data Input</h2>
+                <form id="predictionForm" class="form-grid">
+                    <div class="input-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" required min="1" max="120" placeholder="e.g. 35">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" required>
+                            <option value="" disabled selected>Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group full-width">
+                        <h3>Blood Test Parameters</h3>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="hemoglobin">Hemoglobin (g/dL)</label>
+                        <input type="number" step="0.1" id="hemoglobin" required placeholder="12.0 - 18.0">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="rbc_count">RBC Count (M/mcL)</label>
+                        <input type="number" step="0.01" id="rbc_count" required placeholder="4.0 - 6.0">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="mcv">MCV (fL)</label>
+                        <input type="number" step="0.1" id="mcv" required placeholder="80 - 100">
+                    </div>
+
+                    <button type="submit" class="btn-primary">Analyze Health Status</button>
+                </form>
+            </section>
+
+            <section class="result-section" id="resultCard" style="display: none;">
+                <h2>Analysis Result</h2>
+                <div class="result-display">
+                    <div id="statusIndicator" class="status-badge"></div>
+                    <div class="confidence-container">
+                        <span class="label">Confidence Score</span>
+                        <div class="progress-bar">
+                            <div id="confidenceBar" class="progress-fill"></div>
+                        </div>
+                        <span id="confidenceText" class="value">0%</span>
+                    </div>
+                    
+                    <div class="interpretation">
+                        <h4 id="interpretationTitle"></h4>
+                        <p id="interpretationDesc"></p>
+                    </div>
+
+                    <div class="recommendations">
+                        <h4>Clinical Recommendations</h4>
+                        <ul id="recList"></ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
